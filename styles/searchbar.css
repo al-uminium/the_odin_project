@@ -12,14 +12,14 @@ form {
 .another-container {
     margin: 0 auto;
     height: 100%;
-    max-width: 584px;
+    /* max-width: 584px; */
 }
 
 .searchbar {
     display: flex;
     width: 582px;
     height: 44px;
-    max-width: 582px;
+    /* max-width: 582px; */
     border: 1px solid rgb(223, 225, 229);
     border-radius: 50px;
 }

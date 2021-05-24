@@ -19,7 +19,7 @@ html, body {
 }
 
 .body {
-    height: 80%;
+    height: 70%;
     display: inline-flex;
     flex-direction: column;
     align-items: center;
@@ -31,5 +31,6 @@ html, body {
     align-items: flex-start;
     flex-direction: column;
     justify-content: flex-end;
-    height: 10%;
+    height: 20%;
+    font-size:15px;
 }
