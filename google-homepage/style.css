@@ -53,13 +53,26 @@ html, body {
     padding-right: 15px;
 }
 
-.icons div {
-    padding-right: 15px;
+.circle {
+    border-radius: 50%;
+    position: relative;
+    background-color: white;
+    height: 40px;
+    width: 40px;
+}
+
+.circle:hover {
+    background-color: rgb(220, 222, 224);;
 }
 
 .app-logo {
     padding: 8px;
+    position: relative;
     fill: rgb(95, 99, 104);
+}
+
+.app-logo:hover {
+    cursor: pointer;
 }
 
 .btn {
@@ -73,4 +86,8 @@ html, body {
     text-decoration: none;
     color: white;
     border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: rgb(46, 136, 253);
 }
