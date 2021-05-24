@@ -6,6 +6,7 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/styles/index.css">
         <link rel="stylesheet" href="/styles/navbar.css">
         <link rel="stylesheet" href="/styles/google-logo.css">
         <link rel="stylesheet" href="/styles/searchbar.css">
@@ -32,31 +33,39 @@
                 </div>
             </div>
         </div>
-        <div class="google-logo">
-            <img src="./google-logo.png" alt="Google Logo">
+        <div class="body">
+            <div class="google-logo">
+                <img src="./google-logo.png" alt="Google Logo">
+            </div>
+            <div class="searchbar-container">
+                <form action="/search" method="GET" role="search">
+                    <div class="another-container">
+                        <div class="searchbar">
+                            <div class="inner-searchbar">
+                                <div>
+                                    <img src="search-logo.svg">
+                                </div>
+                                <input type="text" alt="search">
+                                <div>
+                                    <img src="mic-logo.svg" alt="mic" class="mic">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="search-btn-container">
+                            <div class="search-btns">
+                                <input type="submit" value="Google Search" class="search-btn">
+                                <input type="submit" value="I'm Feeling Lucky" class="search-btn">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="language-container">
+                <div id="languages">Google offered in:  <a href="https://www.google.com/setprefs?sig=0_R5daFiBAcQCPnrJg5IzGEAYAz9w%3D&amp;hl=zh-CN&amp;source=homepage&amp;sa=X&amp;ved=0ahUKEwiAzd3L1uHwAhUOX30KHS2GA7EQ2ZgBCA4">中文(简体)</a>    <a href="https://www.google.com/setprefs?sig=0_R5daFiBAcQCPnrJg5IzGEAYAz9w%3D&amp;hl=ms&amp;source=homepage&amp;sa=X&amp;ved=0ahUKEwiAzd3L1uHwAhUOX30KHS2GA7EQ2ZgBCA8">Bahasa Melayu</a>    <a href="https://www.google.com/setprefs?sig=0_R5daFiBAcQCPnrJg5IzGEAYAz9w%3D&amp;hl=ta&amp;source=homepage&amp;sa=X&amp;ved=0ahUKEwiAzd3L1uHwAhUOX30KHS2GA7EQ2ZgBCBA">தமிழ்</a>  </div>
+            </div>
         </div>
-        <div class="searchbar-container">
-            <form action="/search" method="GET" role="search">
-                <div class="another-container">
-                    <div class="searchbar">
-                        <div class="inner-searchbar">
-                            <div>
-                                <img src="search-logo.svg">
-                            </div>
-                            <input type="text" alt="search">
-                            <div>
-                                <img src="mic-logo.svg" alt="mic" class="mic">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="search-btn-container">
-                        <div>
-                            <input type="submit" value="Google Search" class="search-btn">
-                            <input type="submit" value="I'm Feeling Lucky" class="search-btn">
-                        </div>
-                    </div>
-                </div>
-            </form>
+        <div class="footer">
+            Footer
         </div>
     </div>
 </html>

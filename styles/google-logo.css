@@ -2,8 +2,6 @@
     align-items: center;
     display: flex;
     justify-content: center;
-    max-height: 290px;
-    min-height: 92px;
 }
 
 .google-logo img {

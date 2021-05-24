@@ -1,0 +1,17 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    -moz-appearance: none;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-stretch: 100%;
+    font-weight: 400;
+}
+
+.body {
+    height: 80vh;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
