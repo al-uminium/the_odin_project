@@ -96,4 +96,4 @@
  console.log(str[0])
 
  //! If no character found, [] returned `undefined`, charAt() returns an empty string. 
- //! str[0] = "A" does not work. It is READ only!!!
+ //! str[0] = "A" does not work. It is READ only!!! Negative numbers also does not work. I miss python :c
