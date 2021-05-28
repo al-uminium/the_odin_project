@@ -1,11 +1,26 @@
 //querySelector
 const choices = document.querySelectorAll(".choice")
+const gameState = document.querySelector(".game-state")
+const showState = document.querySelector(".show-state")
+const retry = document.querySelector(".retry")
 
-//Add eventlisteners
-choices.forEach(choice => {
-    choice.addEventListener('click', (e) => console.log(e.target.id))
-})
 
+const setWinnerStatus = (status) => showState.innerHTML = status;
+
+const convertToEmoji = (val) => {
+    switch (val) {
+        case "rock":
+            val = "✊"
+            break;
+        case "paper":
+            val = "✋"
+            break;
+        case "scissors":
+            val = "✌️"
+            break;
+    }
+    return val
+}
 
 function playRound(playerSelection, computerSelection) {
 
@@ -20,7 +35,7 @@ function playRound(playerSelection, computerSelection) {
         if (playerSelection === computerSelection) {
             console.log(`It's a draw!`)
             gameOn = false;
-            return
+            return "It's a draw!"
         }
 
         //Iterate through win cases
@@ -29,12 +44,12 @@ function playRound(playerSelection, computerSelection) {
             if (result === winCases[i]) {
                 console.log("Player wins!")
                 gameOn = false;
-                return
+                return "You won!"
             }
         }
         console.log("Computer Wins!")
         gameOn = false;
-        return
+        return "Computer won!"
     }
 }
 
@@ -44,17 +59,49 @@ const computerSelection = () => {
     return compChoices[getNum()]
 }
 
-const playerSelection = () => {
-    while (true) {
-        let playerChoice = prompt("Choose Rock, Paper or Scissors!");
-        playerChoice = playerChoice.toLowerCase().trim()
-        if (playerChoice === 'rock' || playerChoice === 'paper' || playerChoice === 'scissors') {
-            return playerChoice
-        } 
+//Declare vars 
+let playerWinCount = 0;
+let computerWinCount = 0;
+let gameWon = false;
+
+
+function game(clicked) {
+    playerChoice = clicked.target.id
+    computerChoice = computerSelection();
+
+    if (!gameWon) {
+        checkWinner = playRound(playerChoice,computerChoice)
+        
+        //Sets scores
+        if (checkWinner === "You won!") {
+            playerWinCount += 1;
+        } else if (checkWinner === "Computer won!") {
+            computerWinCount += 1;
+        }
+
+        showState.innerHTML = `${convertToEmoji(playerChoice)}  ${convertToEmoji(computerChoice)}`
+        gameState.innerHTML = `😶:${playerWinCount}  🤖:${computerWinCount}`
+    
+        if (playerWinCount === 5 || computerWinCount === 5) {
+            setWinnerStatus(checkWinner)
+            retry.style.display = "block";
+            gameWon = true;
+        }
     }
 }
 
-function game() {
-    player = playerSelection();
-    playRound(player,computerSelection())
+const replayGame = () => {
+    showState.innerHTML = "Rock Paper Scissors!"
+    gameState.innerHTML = "First to 5 wins";
+    playerWinCount = 0;
+    computerWinCount = 0;
+    retry.style.display = "none";
+    gameWon = false;
+
 }
+
+//Add eventlisteners
+choices.forEach(choice => {
+    choice.addEventListener('click', game)
+})
+retry.addEventListener('click', replayGame)
