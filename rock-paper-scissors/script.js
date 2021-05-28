@@ -1,3 +1,12 @@
+//querySelector
+const choices = document.querySelectorAll(".choice")
+
+//Add eventlisteners
+choices.forEach(choice => {
+    choice.addEventListener('click', (e) => console.log(e.target.id))
+})
+
+
 function playRound(playerSelection, computerSelection) {
 
     let gameOn = true;
@@ -43,4 +52,9 @@ const playerSelection = () => {
             return playerChoice
         } 
     }
+}
+
+function game() {
+    player = playerSelection();
+    playRound(player,computerSelection())
 }
