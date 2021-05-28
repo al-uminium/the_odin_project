@@ -55,7 +55,7 @@ function playRound(playerSelection, computerSelection) {
 
 const computerSelection = () => {
     compChoices = ['rock','paper','scissors'];
-    const getNum = () => Math.floor(Math.random()*2+1); //Get array choices
+    const getNum = () => Math.floor(Math.random()*3); //Get array choices
     return compChoices[getNum()]
 }
 
