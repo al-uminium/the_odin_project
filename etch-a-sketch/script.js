@@ -1,11 +1,14 @@
 //Query Selectors
+//Grids
 const gridContainer = document.querySelector(".grid-container")
 const gridRows = document.getElementsByClassName("grid-row");
 const grids = document.getElementsByClassName("grid")
+
+//Buttons
 const resetButton = document.querySelector("#reset")
-const randomButton = document.querySelector("#random")
-const gridButton = document.querySelector("#grid-size")
 const toggleSwitch = document.querySelector(".toggle-color")
+
+//
 const gridText = document.querySelector("#text-grid-size")
 const gridRange = document.querySelector("#range-grid-size")
 
@@ -50,14 +53,14 @@ const randomNum = () => Math.floor(Math.random()*256)
 //Change to black on hover
 const onHover = () => {
     for (let i = 0; i < grids.length; i++) {
-        grids[i].addEventListener('mouseover', e => e.target.style.backgroundColor = `rgba(0,0,0,0.8)`)
+        grids[i].addEventListener('mouseover', e => e.target.style.backgroundColor = `rgba(60,60,60,1)`)
     }
 }
 
 //Change to random color on hover
 const onHoverColor = () => {
     for (let i = 0; i < grids.length; i++) {
-        grids[i].addEventListener('mouseover', e => e.target.style.backgroundColor = `rgba(${randomNum()},${randomNum()},${randomNum()},0.8)`)
+        grids[i].addEventListener('mouseover', e => e.target.style.backgroundColor = `rgba(${randomNum()},${randomNum()},${randomNum()},1)`)
     }
 }
 
@@ -68,32 +71,25 @@ resetButton.addEventListener('click', () => {
     }
 })
 
-//Change to random colors on click
-randomButton.addEventListener('click', e => {
-    for(let i = 0; i < grids.length; i++) {
-        if (grids[i].style.backgroundColor === "rgba(0, 0, 0, 0.8)") {
-            grids[i].style.backgroundColor = `rgba(${randomNum()},${randomNum()},${randomNum()},0.8)`
-        }
-    }
-    onHoverColor();
-})
-
 //Toggle colors;
 //Toggle off
 const toggleOff = () => {
     for(let i = 0; i < grids.length; i++) {
         if (grids[i].style.backgroundColor !== "white") {
-            grids[i].style.backgroundColor = "rgba(0, 0, 0, 0.8)"
+            grids[i].style.backgroundColor = "rgb(60, 60, 60)"
         }
     }
+    onHover();
 }
 //Toggle on
 const toggleOn = () => {
     for(let i = 0; i < grids.length; i++) {
-        if (grids[i].style.backgroundColor === "rgba(0, 0, 0, 0.8)") {
-            grids[i].style.backgroundColor = `rgba(${randomNum()},${randomNum()},${randomNum()},0.8)`
+        if (grids[i].style.backgroundColor === "rgb(60, 60, 60)") {
+            console.log("hi")
+            grids[i].style.backgroundColor = `rgb(${randomNum()},${randomNum()},${randomNum()})`
         }
     }
+    onHoverColor();
 }
 
 //Toggle switch event handling
@@ -105,19 +101,29 @@ toggleSwitch.addEventListener('click', e => {
 //Set grid size on enter
 gridText.addEventListener('keypress', e => {
     if (e.key === 'Enter') {
-        numOfDivs = e.target.value
+        if (typeof(e.target.value) !== "number") {
+            alert("pls dont try to break my code ;w;");
+        }
+
+        if (typeof(Number(e.target.value)) === "number" && Number(e.target.value)<65) {
+            numOfDivs = e.target.value
+        }
+        e.target.placeholder = e.target.value
+        gridRange.value = numOfDivs //sync range button
+        removeGrids();
+        createGrids(numOfDivs);
+        (toggleSwitch.checked) ? toggleOn() : toggleOff()
+
     }
-    gridRange.value = numOfDivs //sync range button
-    removeGrids();
-    createGrids(numOfDivs);
-    onHover()
 })
 
 //Set range
 gridRange.addEventListener('click', e => {
+    gridText.value = ""
+    gridText.placeholder = e.target.value
     removeGrids();
     createGrids(e.target.value);
-    onHover()
+    (toggleSwitch.checked) ? toggleOn() : toggleOff()
 })
 
 createGrids(numOfDivs=16);

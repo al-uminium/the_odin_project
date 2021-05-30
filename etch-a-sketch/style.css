@@ -1,8 +1,15 @@
 html,body {
     width: 100%;
     height: 100%;
+    font-family: 'Press Start 2P', cursive;
+    background-color: whitesmoke
 }
 
+.title {
+    font-size: 2em;
+    margin-bottom: 0.1em;
+    color: whitesmoke;
+}
 
 
 .general {
@@ -12,6 +19,19 @@ html,body {
     width: 100%;
     justify-content: center;
     align-items: center;
+}
+
+.etch-a-sketch {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+    width: 85vh;
+    background-color: crimson;
+    border-radius: 5px;
+    border: 2px solid rgb(177, 7, 41);
+    box-shadow: 0px 2px 5px;
 }
 
 .grid-container {
@@ -32,21 +52,136 @@ html,body {
 .grid-inputs {
     display: flex;
     width: 60vh;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding-top: 0.5em;
 }
 
 #range-grid-size {
-    width: 47vh;
+    width: 50vh;
+}
+
+input[type=range] {
+    width: 100%;
+    margin: 5px 0;
+    background-color: transparent;
+    -webkit-appearance: none;
+}
+  
+input[type=range]:focus {
+    outline: none;
+}
+  
+input[type=range]::-webkit-slider-runnable-track {
+    background: #dcdcdc;
+    border: 0;
+    border-radius: 18.3px;
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+}
+  
+input[type=range]::-webkit-slider-thumb {
+    margin-top: -5px;
+    width: 15px;
+    height: 15px;
+    background: #1cbfff;
+    border: 1px solid rgba(0, 0, 30, 0);
+    border-radius: 15px;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+  
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #f0f0f0;
+}
+  
+input[type=range]::-moz-range-track {
+    background: #dcdcdc;
+    border: 0;
+    border-radius: 18.3px;
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+}
+  
+input[type=range]::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background: #1cbfff;
+    border: 1px solid rgba(0, 0, 30, 0);
+    border-radius: 15px;
+    cursor: pointer;
+}
+  
+input[type=range]::-ms-track {
+    background: transparent;
+    border-color: transparent;
+    border-width: 5.9px 0;
+    color: transparent;
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+}
+  
+input[type=range]::-ms-fill-lower {
+    background: #c8c8c8;
+    border: 0;
+    border-radius: 36.6px;
+}
+  
+input[type=range]::-ms-fill-upper {
+    background: #dcdcdc;
+    border: 0;
+    border-radius: 36.6px;
+}
+  
+input[type=range]::-ms-thumb {
+    width: 15px;
+    height: 15px;
+    background: #1cbfff;
+    border: 1px solid rgba(0, 0, 30, 0);
+    border-radius: 15px;
+    cursor: pointer;
+    margin-top: 0px;
+    /*Needed to keep the Edge thumb centred*/
+}
+  
+input[type=range]:focus::-ms-fill-lower {
+    background: #dcdcdc;
+}
+  
+input[type=range]:focus::-ms-fill-upper {
+    background: #f0f0f0;
 }
 
 #text-grid-size {
-    width: 11vh;
+    width: 5vh;
+    border-radius: 10px;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8em;
 }
 
 .buttons {
     display: flex;
     width: 60vh;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding-bottom:0.5em
+}
+
+button {
+    border:none
+}
+
+.btn {
+    font-family: 'Press Start 2P', cursive;;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    background-color: #D3D3D3;
 }
 
 .switch {
@@ -57,9 +192,9 @@ html,body {
 }
 
 .switch input {
-opacity: 0;
-width: 0;
-height: 0;
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
 .slider {

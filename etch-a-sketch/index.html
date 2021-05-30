@@ -6,25 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
     <title>Etch-A-Sketch</title>
     
 </head>
 <body>
     <div class="general">
-        <div>Etch-A-Sketch</div>
-        <div class="grid-container"></div>
-        <div class="grid-inputs">
-            <input type="range" id="range-grid-size" min="1" max="64" value="16">
-            <input type="text" id="text-grid-size" placeholder="Accepts up to 64">
-        </div>
-        <div class="buttons">
-            <button class="btn" id="random">Random Colors!</button>
-            <label class="switch">
-                <input type="checkbox" class="toggle-color">
-                <span class="slider round"></span>
-              </label>
-            <button class="btn" id="reset">Reset!</button>
+        <div class="etch-a-sketch">
+            <div class="title">Etch-A-Sketch</div>
+            <div class="buttons">
+                <label class="switch">
+                    <input type="checkbox" class="toggle-color">
+                    <span class="slider round"></span>
+                  </label>
+                <button class="btn" id="reset">Reset!</button>
+            </div>
+            <div class="grid-container"></div>
+            <div class="grid-inputs">
+                <input type="range" id="range-grid-size" min="1" max="64" value="16">
+                <input type="text" id="text-grid-size" placeholder="16">
+            </div>
         </div>
     </div>
 </body>
