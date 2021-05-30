@@ -11,8 +11,22 @@
     
 </head>
 <body>
-    <div class="grid-container">
-        
+    <div class="general">
+        <div>Etch-A-Sketch</div>
+        <div class="grid-container"></div>
+        <div class="grid-inputs">
+            <input type="range" id="range-grid-size" min="1" max="64" value="16">
+            <input type="text" id="text-grid-size" placeholder="Accepts up to 64">
+        </div>
+        <div class="buttons">
+            <button class="btn" id="grid-size">Grid Size!</button>
+            <button class="btn" id="random">Random Colors!</button>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+              </label>
+            <button class="btn" id="reset">Reset!</button>
+        </div>
     </div>
 </body>
 
