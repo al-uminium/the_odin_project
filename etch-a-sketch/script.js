@@ -5,6 +5,7 @@ const grids = document.getElementsByClassName("grid")
 const resetButton = document.querySelector("#reset")
 const randomButton = document.querySelector("#random")
 const gridButton = document.querySelector("#grid-size")
+const toggleSwitch = document.querySelector(".toggle-color")
 const gridText = document.querySelector("#text-grid-size")
 const gridRange = document.querySelector("#range-grid-size")
 
@@ -19,6 +20,7 @@ const createGridElement = (numOfDivs) => {
         for (let j = 0; j < numOfDivs; j++) { //Adds column to current row
             let grid = document.createElement('div');
             grid.className = "grid"
+            grid.style.backgroundColor = "white"
             currentRow.appendChild(grid)
         }
     }
@@ -76,19 +78,29 @@ randomButton.addEventListener('click', e => {
     onHoverColor();
 })
 
-//Change back to black
-
-//Set grid size on click 
-gridButton.addEventListener('click', () => {
-    numOfDivs = Number(prompt("What would you want your grid size to be?"))
-    if (!numOfDivs) {
-        return //if user pressed cancel
+//Toggle colors;
+//Toggle off
+const toggleOff = () => {
+    for(let i = 0; i < grids.length; i++) {
+        if (grids[i].style.backgroundColor !== "white") {
+            grids[i].style.backgroundColor = "rgba(0, 0, 0, 0.8)"
+        }
     }
-    gridRange.value = numOfDivs //sync range button 
-    removeGrids();
-    createGrids(numOfDivs);
-    onHover()
+}
+//Toggle on
+const toggleOn = () => {
+    for(let i = 0; i < grids.length; i++) {
+        if (grids[i].style.backgroundColor === "rgba(0, 0, 0, 0.8)") {
+            grids[i].style.backgroundColor = `rgba(${randomNum()},${randomNum()},${randomNum()},0.8)`
+        }
+    }
+}
+
+//Toggle switch event handling
+toggleSwitch.addEventListener('click', e => {
+    (e.target.checked) ? toggleOn() : toggleOff()
 })
+
 
 //Set grid size on enter
 gridText.addEventListener('keypress', e => {
