@@ -94,16 +94,22 @@ const displayBtn = (button) => {
 
 //Set operators.
 const setOpr = (opr,a,b) => {
+    let inputText = calcInput.textContent;
+    let operator = opr.textContent
+
     if (!currOperator && firstNum) {
         currOperator = opr.id 
-        calcInput.textContent = calcInput.textContent + opr.textContent
+        updateInput(inputText+operator)
+
     } else if (currOperator && secNum) { // if you chain operators e.g. 6+6+6
         res = doMath(currOperator,a,b)
         currOperator = opr.id 
-        updateInput(res+opr.textContent)
+        updateInput(res+operator)
+
     } else if (currOperator) { //if you press equals, then another operator e.g. 6+6=36 ... 36+2
         currOperator = opr.id 
-        updateInput(calcOutput.textContent + opr.textContent)
+        updateInput(calcOutput.textContent + operator)
+        
     } else if (firstNum) { //will not allow to place opr if there is no firstNum
         return
     }

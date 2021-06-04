@@ -108,6 +108,18 @@ html, body {
     color: #212121;
 }
 
+#clear {
+    background-color: #b52121;
+    color: whitesmoke;
+    cursor: pointer;
+}
+
+#del {
+    background-color: #56575f;
+    color: whitesmoke;
+    cursor: pointer;
+}
+
 .opr {
     cursor: pointer;
     background-color: #c97720;
