@@ -1,0 +1,135 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    background-color: #3c3f54;
+    /* font-family: 'Major Mono Display', monospace; */
+}
+
+.flex-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.calculator-container {
+    /* display: grid; */
+    /* grid-template-rows: 25% 75%; */
+    display: flex;
+    flex-direction: column;
+    height: 55vh;
+    width: 40vh;
+    margin:auto;
+    border: 7px outset #23262c;
+    border-radius: 0.5em;
+    background-color: #383b42;
+    box-shadow: 0px 0px 100px 80px #2e3142;
+}
+
+.display-container {
+    height: 27%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.button-container {
+    height: 70%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.display {
+    height: 80%;
+    width: 90%; 
+    justify-self: center;
+    align-self: center;
+    border-radius: 0.5em;
+    background-color: #b3ced3;
+    font-family: 'VT323', monospace;
+    font-size: 1.8em;
+    color: #202e30;
+}
+
+.display:hover {
+    border: 3px inset #707380;
+}
+
+#calc-input {
+    display: flex; */
+    align-items: center;
+    padding-left:0.2em;
+    padding-top:0.1em;
+    width: 100%;
+    height:43%;
+    
+}
+
+#calc-output {
+    display: flex;
+    width: 100%;
+    height: 57%;
+    font-size: 140%;
+    justify-content: end;
+    align-items: flex-end;
+    margin-left: -2%;
+    margin-top: -1%;
+}
+
+.top {
+    grid-column-start: span 2;
+}
+
+.buttons {
+    display: grid;
+    height: 100%;
+    width: 90%;
+    justify-self: center;
+    align-self: center;
+    justify-content: space-between;
+    grid-template-columns: repeat(4, 20%);
+    row-gap: 0.3em;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+}
+
+.button {
+    height: 60%;
+    width: 100%;
+    border: 2px outset #4e4f5f;
+    border-radius: 0.5em;
+    background-color: #7d7e8c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    box-shadow: 1.2px 1.2px #26282c;
+    color: #212121;
+}
+
+.opr {
+    cursor: pointer;
+    background-color: #c97720;
+    color:whitesmoke
+}
+
+.opr:hover {
+    background-color: #ee8d26;
+}
+
+#\= {
+    background-color: #2e8edb;
+    color:whitesmoke
+}
+
+#\=:hover {
+    background-color: #3799e9;
+}
+
+.btn:hover {
+    cursor: pointer;
+    background-color: #999aa7;
+}
+
+
