@@ -38,11 +38,13 @@ h1 {
     justify-content: center;
     height: 60%;
     width: 8%;
-    font-size: large;
+    font-size: 1.2em;
     font-family: serif;
-    background-color: #ab855b;
+    background-color: #ab865b5d;
     color: #f2eae1;
-    border: 1px solid #d6bca3;
+    border-style: none;
+    border-top: 2px solid #d6bca3;
+    border-bottom: 2px solid #d6bca3;
     border-radius: 0.2em;
     cursor: pointer;
 }
