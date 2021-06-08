@@ -1,0 +1,83 @@
+#cover-div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9000;
+    opacity: 0.3;
+    background-color: gray;
+}
+
+.form-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    display: none;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.form-card {
+    display: flex;
+    flex-direction: column;
+    height: 40vh;
+    width: 45vh;
+    border: 2px solid whitesmoke;
+    justify-content: space-evenly;
+    background-color: whitesmoke;
+    margin: 10% auto 0 auto;
+    box-shadow: 0px 0px 10px slategray;
+}
+
+.close-btn-container {
+    box-sizing: border-box;
+    width: 100%;
+    height: 1%;
+    padding: 0 0.5em 0 0;
+}
+
+#close-form {
+    width: 2.1vh;
+    height: 2.1vh;
+    display: flex;
+    float: right;
+    font-size: 60%;
+    font-weight: 600;
+    justify-items: center;
+    align-self: center;
+    border-radius: 50%;
+    /* border-style: none; */
+    border: 1.2px solid slategray;
+    color: slategray;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    border: 1.2px solid #545454;
+    color: #545454;
+    box-shadow: 0px 0px 1px ;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 16%;
+    align-items: center;
+}
+
+.input-container > input {
+    width: 80%;
+    margin: 0.5em 0 0 0;
+}
+
+#add-book {
+    margin: 0 0 1.5em 0;
+    display: flex;
+    align-self: center;
+    width: 15vh;
+}
