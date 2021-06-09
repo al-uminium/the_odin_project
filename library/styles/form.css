@@ -23,34 +23,28 @@
 .form-card {
     display: flex;
     flex-direction: column;
-    height: 40vh;
-    width: 45vh;
-    border: 2px solid whitesmoke;
+    height: 45vh;
+    width: 40vh;
+    border: 2px solid #edebe1;
     justify-content: space-evenly;
-    background-color: whitesmoke;
-    margin: 10% auto 0 auto;
-    box-shadow: 0px 0px 10px slategray;
+    background-color: #edebe1;
+    margin: 20vh auto 0 auto;
+    box-shadow: 0px 0px 10px rgb(142, 144, 112);
 }
 
-.close-btn-container {
-    box-sizing: border-box;
-    width: 100%;
-    height: 1%;
-    padding: 0 0.5em 0 0;
-}
 
 #close-form {
-    width: 2.1vh;
-    height: 2.1vh;
+    width: 3vh;
+    height: 3vh;
     display: flex;
     float: right;
-    font-size: 60%;
+    font-size: 0.8em;
     font-weight: 600;
     justify-items: center;
     align-self: center;
-    border-radius: 50%;
-    /* border-style: none; */
-    border: 1.2px solid slategray;
+    /* border-radius: 50%; */
+    border-style: none;
+    /* border: 1.2px solid slategray; */
     color: slategray;
     background-color: transparent;
     cursor: pointer;
@@ -79,5 +73,17 @@
     margin: 0 0 1.5em 0;
     display: flex;
     align-self: center;
-    width: 15vh;
+    width: 10em;
+    height: 2.5em;
+    border: 1px solid #1c110f;
+    color: #1c110f;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+@media (max-width: 320px) {
+    .form-card{
+        height: 65vh;
+        width: 60vh;
+    }
 }
