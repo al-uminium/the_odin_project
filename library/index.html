@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Library</title>
+    
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/form.css">
+    <link rel="stylesheet" href="./styles/card.css">
+</head>
+<body>
+    <div id="top-container">
+        <h1>Bibliotheca</h1>
+        <div id="btn-container">
+            <input type="button" id="open-form" value="Add Book">
+        </div>
+    </div>
+    <div class="form-container">
+        <form class="form-card">
+            <div class="close-btn-container">
+                <input type="button" id="close-form" value="X">
+            </div>
+            <div class="input-container">
+                <label for="book-title">Book Title</label>
+                <input class="form-inputs" type="text" id="book-title">
+            </div>
+            <div class="input-container">
+                <label for="book-author">Author</label>
+                <input class="form-inputs" type="text" id="book-author">
+            </div>
+            <div class="input-container">
+                <label for="book-pages">Pages</label>
+                <input class="form-inputs" id="book-pages">
+            </div>
+            <div class="input-container">
+                <label for="book-read">Thou hast perused?</label>
+                <input type="checkbox" id="book-read">
+            </div>
+            <input type="submit" value="Add Book To Library" id="add-book">
+        </form>
+    </div>
+    <div id="library-container">
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
