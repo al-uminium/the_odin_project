@@ -1,0 +1,75 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+#main {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    grid-template-rows: 25% 60% 15%;
+    justify-content: center;
+    align-items: center;
+}
+
+#selection-board {
+    display: grid;
+    height: 100%;
+    grid-template-rows: 60% 40%;
+}
+
+#game-type {
+    align-self: center;
+}
+
+#radio-select {
+    align-self: flex-end;
+}
+
+#game-board {
+    display: grid;
+    height: 25em;
+    width: 25em;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 1rem;
+    justify-items: center;
+    align-content: center;
+}
+
+.sel-style {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.board {
+    height: 7em;
+    width: 7em;
+    border: 1px solid black;
+}
+
+.sel-btn {
+    height: 2.3em;
+    width: 8.5em;
+}
+
+@media (max-width: 320px) {
+    #game-board {
+        height: 15em;
+        width: 15em;
+    }
+
+    #game-type {
+        justify-content: space-between;
+    }
+
+    .board {
+        height: 4em;
+        width: 4em;
+    }
+}
