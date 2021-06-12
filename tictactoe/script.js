@@ -110,10 +110,18 @@ const Game = () => {
     let ai = AIPlayer()
     let gameActive = true;
 
-    const gameFinished = (player) => {
-        let winner = (X.checked && player.choice==="X" || O.checked && player.choice==="O") ? "You won!" : "Computer won!"
-        winnerMessage.textContent = winner;
-        replayBtn.style.display = "block"
+    const gameFinished = (game, player) => {
+        switch (game) {
+            case true:
+                let winner = (X.checked && player.choice==="X" || O.checked && player.choice==="O") ? "You won!" : "Computer won!"
+                winnerMessage.textContent = winner;
+                replayBtn.style.display = "block"
+            case false:
+                //code
+            case "draw":
+                //code
+        }
+        
     }
     
     const playRound = (game, player, e) => {
@@ -127,32 +135,25 @@ const Game = () => {
                 switch (gameWon) {
                     case false:
                         player.nextTurn(player);
-                        if (AITurnedOn) {
-                            let aiSelection = ai.aiTurn(game.gameState)
-                            aiUpdateState(aiSelection, player.choice)
-                        }
                     case true:
                         gameActive = false;
                         gameFinished(player)
                     case "draw":
-                        
-                    
-                }
-                gameActive = (game.checkGame(game.gameState)) ? false : player.nextTurn(player);
-                if (AITurnedOn) {
-                    
-                    game.isValidMove(aiSelection, player.choice)
-                    boards[aiSelection].textContent = player.choice
-                    player.nextTurn(player)
-                }
-            } 
 
-            if (game.checkGame(game.gameState) === null) {
-                gameActive = false;
-                winnerMessage.textContent = "It's a draw!"
-                replayBtn.style.display = "block"
-                return
-            }
+                }
+                if (AITurnedOn) {
+                    let aiSelection = ai.aiTurn(game.gameState)
+                    aiUpdateState(aiSelection, player.choice)
+                }
+                
+                // gameActive = (game.checkGame(game.gameState)) ? false : player.nextTurn(player);
+                // if (AITurnedOn) {
+                    
+                //     game.isValidMove(aiSelection, player.choice)
+                //     boards[aiSelection].textContent = player.choice
+                //     player.nextTurn(player)
+                // }
+            } 
         }
         if (!gameActive) {
             gameFinished(player);
