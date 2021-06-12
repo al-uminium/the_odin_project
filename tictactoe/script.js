@@ -12,13 +12,6 @@
 
 const AIPlayer = () => {
     const aiPlayer = document.querySelector("#ai-play")
-    const humanPlayer = document.querySelector("#friend-play")
-    // const aiDifficulty = document.querySelector("#ai-difficulty")
-
-    // const aiDropDown = () => {
-        // console.log(aiPlayer.checked)
-    //     aiDifficulty.style.visibility = (aiStatus()) ? "visible" : "hidden"
-    // }
 
     const aiStatus = () => {
         return aiPlayer.checked
@@ -33,10 +26,6 @@ const AIPlayer = () => {
         }
         return aiChoices[Math.floor(Math.random() * aiChoices.length)]
     }
-
-    // aiPlayer.addEventListener("click", () => aiDropDown())
-    // humanPlayer.addEventListener("click", () => aiDropDown())
-
     return {aiStatus, aiTurn}
 }
 
@@ -44,11 +33,12 @@ const Player = (X) => {
     choice = (X.checked) ? "X" : "O"
     computer = (X.checked) ? "O" : "X"
 
-    const changePlayer = (turn) => {
+    const nextTurn = (turn) => {
         turn.choice = (turn.choice === "X") ? "O" : "X"
         return turn
     }
-    return {choice, changePlayer}
+
+    return {choice, computer, nextTurn}
 }
 
 const gameBoard = () => {
@@ -58,19 +48,20 @@ const gameBoard = () => {
         "","",""
     ];
 
-    const changeState = (val, player) => {
-        if (!gameState[val]) {
-            gameState[val] = player;
-            return true
-        } else {
-            return false
-        }
+    const isValidMove = (val) => {
+        return (val.target.textContent) ? false : true
     }
 
     const updateState = (e, player) => {
         if (!e.target.textContent) {
-            e.target.textContent = player
+            e.target.textContent = player //update text
+            gameState[e.target.id] = player //update array
         } 
+    }
+
+    const aiUpdateState = (aiSelect, player) => {
+        boards[aiSelect].textContent = player
+        gameState[aiSelect] = player
     }
 
     const checkGame = (arr) => {
@@ -86,7 +77,8 @@ const gameBoard = () => {
         ]
 
         if (!arr.includes("")) { //if all squares are filled, return null
-            return null
+            return "draw"
+
         } else if (arr.includes("")) {
             for (const winCase of winCases) {
                 let [a, b, c] = winCase;
@@ -95,11 +87,13 @@ const gameBoard = () => {
                 }
             }
         }
+
         return false
     }
     return {gameState, 
-        changeState, 
-        updateState, 
+        isValidMove, 
+        updateState,
+        aiUpdateState, 
         checkGame
     }
 }
@@ -116,26 +110,40 @@ const Game = () => {
     let ai = AIPlayer()
     let gameActive = true;
 
-    const gameWon = (player) => {
+    const gameFinished = (player) => {
         let winner = (X.checked && player.choice==="X" || O.checked && player.choice==="O") ? "You won!" : "Computer won!"
         winnerMessage.textContent = winner;
         replayBtn.style.display = "block"
     }
     
     const playRound = (game, player, e) => {
-        //changeState() changes arr values for gamestate and returns true if the state *has* been changed, else returns false 
-        let changeGameState = game.changeState(e.target.id, player.choice) 
+        //isValidMove() changes arr values for gamestate and returns true if the state *has* been changed, else returns false 
         let AITurnedOn = ai.aiStatus()
-        console.log(AITurnedOn)
+        let gameWon = game.checkGame(game.gameState)
+
         if (gameActive) {
-            if (changeGameState) { 
+            if (game.isValidMove(e)) { 
                 game.updateState(e, player.choice);
-                gameActive = (game.checkGame(game.gameState)) ? false : player.changePlayer(player);
+                switch (gameWon) {
+                    case false:
+                        player.nextTurn(player);
+                        if (AITurnedOn) {
+                            let aiSelection = ai.aiTurn(game.gameState)
+                            aiUpdateState(aiSelection, player.choice)
+                        }
+                    case true:
+                        gameActive = false;
+                        gameFinished(player)
+                    case "draw":
+                        
+                    
+                }
+                gameActive = (game.checkGame(game.gameState)) ? false : player.nextTurn(player);
                 if (AITurnedOn) {
-                    let aiSelection = ai.aiTurn(game.gameState)
-                    game.changeState(aiSelection, player.choice)
+                    
+                    game.isValidMove(aiSelection, player.choice)
                     boards[aiSelection].textContent = player.choice
-                    player.changePlayer(player)
+                    player.nextTurn(player)
                 }
             } 
 
@@ -147,7 +155,7 @@ const Game = () => {
             }
         }
         if (!gameActive) {
-            gameWon(player);
+            gameFinished(player);
             return
         }
     }
