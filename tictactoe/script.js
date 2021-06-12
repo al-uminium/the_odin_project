@@ -1,10 +1,7 @@
-//Query selectors 
-const selectionBoard = document.querySelector("#selection-board");
-const gameScore = document.querySelector("#game-score");
-
-
+//Create board
 (function () { 
     const gameBoard = document.querySelector("#game-board")
+
     for (let i = 0; i < 9; i++) {
         let div = document.createElement("div")
         div.classList.add("board")
@@ -13,20 +10,45 @@ const gameScore = document.querySelector("#game-score");
     }
 })();
 
-const Player = () => {
-    const setPlayer = () => {
-        const X = document.querySelector("#X")
-        return (X.checked) ? "X" : "O"
+const AIPlayer = () => {
+    const aiPlayer = document.querySelector("#ai-play")
+    const humanPlayer = document.querySelector("#friend-play")
+    // const aiDifficulty = document.querySelector("#ai-difficulty")
+
+    // const aiDropDown = () => {
+        // console.log(aiPlayer.checked)
+    //     aiDifficulty.style.visibility = (aiStatus()) ? "visible" : "hidden"
+    // }
+
+    const aiStatus = () => {
+        return aiPlayer.checked
     }
 
-    playerChoice = setPlayer()
+    const aiTurn = (arr) => {
+        aiChoices = []
+        for (let i = 0; i < arr.length; i++) {
+            if (!arr[i].length) {
+                aiChoices.push(i);
+            }
+        }
+        return aiChoices[Math.floor(Math.random() * aiChoices.length)]
+    }
+
+    // aiPlayer.addEventListener("click", () => aiDropDown())
+    // humanPlayer.addEventListener("click", () => aiDropDown())
+
+    return {aiStatus, aiTurn}
+}
+
+const Player = (X) => {
+    choice = (X.checked) ? "X" : "O"
+    computer = (X.checked) ? "O" : "X"
 
     const changePlayer = (turn) => {
-        let nextTurn = (turn.playerChoice === "X") ? "O" : "X"
-        return nextTurn
+        turn.choice = (turn.choice === "X") ? "O" : "X"
+        return turn
     }
-
-    return {playerChoice, changePlayer}
+    return {choice, changePlayer}
 }
 
 const gameBoard = () => {
@@ -39,12 +61,16 @@ const gameBoard = () => {
     const changeState = (val, player) => {
         if (!gameState[val]) {
             gameState[val] = player;
+            return true
+        } else {
+            return false
         }
-        console.log(gameState)
     }
 
     const updateState = (e, player) => {
-        e.target.textContent = player
+        if (!e.target.textContent) {
+            e.target.textContent = player
+        } 
     }
 
     const checkGame = (arr) => {
@@ -55,18 +81,22 @@ const gameBoard = () => {
             ["0","3","6"],
             ["1","4","7"],
             ["2","5","8"],
+            ["6","4","2"],
             ["0","4","8"]
         ]
 
-        for (const winCase of winCases) {
-            let [a, b, c] = winCase;
-            if (arr[a].length && arr[a] === arr[b] && arr[a] === arr[c]) {
-                return true
+        if (!arr.includes("")) { //if all squares are filled, return null
+            return null
+        } else if (arr.includes("")) {
+            for (const winCase of winCases) {
+                let [a, b, c] = winCase;
+                if (arr[a].length && arr[a] === arr[b] && arr[a] === arr[c]) {
+                    return true
+                }
             }
         }
         return false
     }
-
     return {gameState, 
         changeState, 
         updateState, 
@@ -77,34 +107,71 @@ const gameBoard = () => {
 const Game = () => {
     const boards = document.getElementsByClassName("board")
     const X = document.querySelector("#X")
-
-    const changePlayer = (turn) => {
-        turn = (turn === "X") ? "O" : "X"
-        return turn
-    }
+    const O = document.querySelector("#O")
+    const winnerMessage = document.querySelector("#winner-message")
+    const replayBtn = document.querySelector("#replay")
 
     let game = gameBoard()
-    let player = (X.checked) ? "X" : "O"
+    let player = Player(X)
+    let ai = AIPlayer()
     let gameActive = true;
-    
-    const playRound = (game, player, gameActive, e) => {
-        game.changeState(e.target.id, player);
-        game.updateState(e, player);
-        gameActive = (game.checkGame(game.gameState)) ? false : true
 
+    const gameWon = (player) => {
+        let winner = (X.checked && player.choice==="X" || O.checked && player.choice==="O") ? "You won!" : "Computer won!"
+        winnerMessage.textContent = winner;
+        replayBtn.style.display = "block"
+    }
+    
+    const playRound = (game, player, e) => {
+        //changeState() changes arr values for gamestate and returns true if the state *has* been changed, else returns false 
+        let changeGameState = game.changeState(e.target.id, player.choice) 
+        let AITurnedOn = ai.aiStatus()
+        console.log(AITurnedOn)
         if (gameActive) {
-            player = changePlayer(player)
-            console.log(player)
-        } else {
-            console.log("meow")
+            if (changeGameState) { 
+                game.updateState(e, player.choice);
+                gameActive = (game.checkGame(game.gameState)) ? false : player.changePlayer(player);
+                if (AITurnedOn) {
+                    let aiSelection = ai.aiTurn(game.gameState)
+                    game.changeState(aiSelection, player.choice)
+                    boards[aiSelection].textContent = player.choice
+                    player.changePlayer(player)
+                }
+            } 
+
+            if (game.checkGame(game.gameState) === null) {
+                gameActive = false;
+                winnerMessage.textContent = "It's a draw!"
+                replayBtn.style.display = "block"
+                return
+            }
+        }
+        if (!gameActive) {
+            gameWon(player);
+            return
         }
     }
 
+    const replayGame = () => {
+        for (const board of boards) {
+            board.textContent = ""
+        }
+        game = gameBoard()
+        player = Player(X)
+        gameActive = true
+        winnerMessage.textContent = "";
+        replayBtn.style.display = "none"
+    }
+
+    //Event listeners
     for (const board of boards ) {
         board.addEventListener("click", (e) => {
-            playRound(game, player, gameActive, e)
+            playRound(game, player, e)
         })
     }
+    replayBtn.addEventListener("click", () => replayGame())
+    X.addEventListener("click", () => replayGame())
+    O.addEventListener("click", () => replayGame())
 }
 
 Game()

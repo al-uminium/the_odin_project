@@ -4,18 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles/board.css">
+    <link rel="stylesheet" href="./styles/selectionbuttons.css">
     <title>t i c t a c t o e</title>
 </head>
 <body>
     <div id="main">
         <div id="selection-board">
             <div class="sel-style" id="game-type">
-                <div id="ai">
-                    <input class="sel-btn" type="button" value="Play With AI">
+                <div class="sel-btn" id="ai">
+                    <input type="radio" id="ai-play" name="game-select">
+                    <label for="ai-play">Play With AI</label>
+                    <div id="ai-difficulty">
+                        <p id="ai-easy">Easy</p>
+                        <p id="ai-hard">Hard</p>
+                    </div>
                 </div>
-                <div id="human">
-                    <input class="sel-btn" type="button" value="Play With Human">
+                <div class="sel-btn" id="human">
+                    <input type="radio" id="friend-play" name="game-select" checked>
+                    <label for="friend-play">Play With Friend</label>
                 </div>
             </div>
             <div class="sel-style" id="radio-select">
@@ -31,11 +40,12 @@
         </div>
         <div id="game-section">
             <div id="game-board">
-    
+                
             </div>
         </div>
         <div id="game-score">
-    
+            <p id="winner-message"></p>
+            <input type="button" id="replay" value="Play Again?">
         </div>
     </div>
 </body>
