@@ -8,13 +8,16 @@
 html, body {
     height: 100%;
     width: 100%;
+    background-color: rgb(245, 245, 245);
+    color: rgb(48, 53, 56);
+    font-family: 'Roboto', sans-serif;
 }
 
 #main {
     display: grid;
     height: 100%;
     width: 100%;
-    grid-template-rows: 30% 55% 15%;
+    grid-template-rows: 25% 55% 20%;
     justify-content: center;
     align-items: center;
 }
@@ -22,19 +25,18 @@ html, body {
 #selection-board {
     display: grid;
     height: 100%;
-    grid-template-rows: 75% 25%;
+    grid-template-rows: 60% 40%;
+    position: relative;
 }
 
 #game-type {
     align-self: flex-end;
+    position: relative;
 }
 
 #radio-select {
     align-self: flex-end;
-}
-
-#replay {
-    display: none;
+    position: relative;
 }
 
 /* ------------------------------------------------------------------- SELECTION BUTTONS --------------------------------------------------------------------------------------------*/
@@ -51,12 +53,10 @@ html, body {
 }
 
 .sel-btn label {
-    display: inline-block;
-    background-color: #ddd;
+    background-color: transparent;
     padding: 0.3rem 0.8rem;
-    font-family: sans-serif, Arial;
     font-size: 1em;
-    border: 2px solid #444;
+    border: 2px solid transparent;
     border-radius: 4px;
     cursor: pointer;
 }
@@ -66,23 +66,34 @@ html, body {
     border-color: #4c4;
 }
 
-.sel-btn input[type="radio"]:focus + label {
-    border: 2px solid #444;
+/* ------------------------------------------------------------------------ X or O --------------------------------------------------------------------------------------------*/
+
+.player-choice {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 }
 
-#ai-difficulty {
-    visibility: hidden;
-    box-shadow: 0px 0px 2px #ddd;
+.player-choice input[type="radio"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
 }
 
-#ai-difficulty > p:hover {
-    background-color: #ddd;
+.player-choice label {
+    background-color: transparent;
+    padding: 0.3rem 0.5rem;
+    border: 2px solid transparent;
+    font-size: 1em;
+    border-radius: 4px;
     cursor: pointer;
 }
 
-#ai-difficulty > p {
-    padding: 0.2em;
-    background-color: rgb(250, 250, 250);
+.player-choice input[type="radio"]:checked + label {
+    background-color:rgb(156, 218, 247);
+    border: 2px solid rgb(68, 131, 204);
+    border-color: rgb(53, 113, 182);
+    font-weight: 600;
 }
 
 /* ------------------------------------------------------------------------ GAME BOARD --------------------------------------------------------------------------------------------*/
@@ -100,13 +111,15 @@ html, body {
 .board {
     height: 7rem;
     width: 7rem;
-    border: 1px solid black;
+    border: 1px solid rgba(59, 55, 55, 0.8);
     border-radius: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: sans-serif;
     font-size: 3em;
+    color: rgb(56, 52, 52);
+    transition: cubic-bezier(.17,.67,.83,.67);
 }
 
 /* ------------------------------------------------------------------------ GAME SCORE --------------------------------------------------------------------------------------------*/
@@ -114,6 +127,93 @@ html, body {
 #game-score {
     width: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 1.5em;
+}
+
+#game-score > p {
+    font-size: 2.5em;
+    padding-bottom: 0.5em;
+    position: relative;
+}
+
+#replay {
+    display: none;
+    position: relative;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.2em;
+    cursor: pointer;
+    font-family: 'Roboto';
+    font-size: 1rem;
+}
+
+#replay:hover {
+    border-bottom: 1px solid rgb(59, 55, 55);
+}
+
+/* ------------------------------------------------------------------------ ANIMATION --------------------------------------------------------------------------------------------*/
+
+.player-anim {
+    animation-duration: 0.5s;
+    animation-name: dropin;
+}
+
+.comp-anim {
+    animation-name: dropin;
+    animation-duration: 0.5s;
+    animation-delay: 0.3s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+.win-anim {
+    animation-name: transform;
+    animation-duration: 0.5s;
+    animation-delay: 0.3s;
+    animation-fill-mode: both;
+}
+
+.fade-in {
+    animation-name: fadein;
+    animation-duration: 0.3s;
+    animation-delay: 1s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+@keyframes dropin {
+    0% {
+        opacity: 0;
+        margin-bottom: 30%;
+    }
+    100% {
+        opacity: 1;
+        margin-bottom: 0%;
+    }
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes transform {
+    0% {
+        color: rgb(56, 52, 52);
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        color: rgb(51, 181, 109);
+        transform: scale(1.4);
+        opacity: 1;
+    }
 }
 
 @media (max-width: 320px) {
@@ -127,12 +227,15 @@ html, body {
     }
 
     .board {
-        height: 4rem;
-        width: 4rem;
-        font-size: 1.7em;
+        height: 4.2rem;
+        width: 4.2rem;
+        font-size: 2.5rem;
     }
 
     .sel-btn label {
-        padding: 0rem
+        padding: 0.2rem
+    }
+    #game-score > p {
+        font-size: 1.5rem;
     }
 }

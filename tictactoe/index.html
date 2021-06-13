@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="./styles/styles.css">
-    <link rel="stylesheet" href="./styles/board.css">
-    <link rel="stylesheet" href="./styles/selectionbuttons.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet"> 
     <title>t i c t a c t o e</title>
 </head>
 <body>
     <div id="main">
         <div id="selection-board">
             <div class="sel-style" id="game-type">
+                
                 <div class="sel-btn" id="ai">
                     <input type="radio" id="ai-play" name="game-select">
                     <label for="ai-play">Play With AI</label>
@@ -24,13 +25,12 @@
                 </div>
             </div>
             <div class="sel-style" id="radio-select">
-                <div>
+                <div class="player-choice">
                     <input type="radio" id="X" name="player" checked>
                     <label for="X">X</label>
-                </div>
-                <div>
+
                     <input type="radio" id="O" name="player">
-                    <label for="X">O</label>
+                    <label for="O">O</label>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
         </div>
         <div id="game-score">
             <p id="winner-message"></p>
-            <input type="button" id="replay" value="Play Again?">
+            <input type="button" id="replay" class="fade-in" value="Play Again?">
         </div>
     </div>
 </body>
