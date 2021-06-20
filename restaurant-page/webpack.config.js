@@ -6,7 +6,6 @@ module.exports = {
 
     entry: {
         index: './src/index.js',
-        getDOM: './src/getDOM.js',
     },
 
     devtool: 'inline-source-map',
@@ -30,8 +29,20 @@ module.exports = {
     module: {
         rules: [
           {
+            test: /\.css$/i,
+            use: ['style-loader', 'css-loader'],
+          },
+          {
             test: /\.s[ac]ss$/i,
-            use: ['style-loader', 'css-loader', 'sass-loader'],
+            use: ['style-loader', 'css-loader', 'resolve-url-loader', 'sass-loader'],
+          },
+          {
+            test: /\.(png|svg|jpg|jpeg|gif)$/i,
+            type: 'asset/resource',
+          },
+          {
+            test: /\.(woff|woff2|eot|ttf|otf)$/i,
+            type: 'asset/resource',
           },
         ],
       },
