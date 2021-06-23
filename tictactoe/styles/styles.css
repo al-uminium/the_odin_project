@@ -17,7 +17,7 @@ html, body {
     display: grid;
     height: 100%;
     width: 100%;
-    grid-template-rows: 25% 55% 20%;
+    grid-template-rows: 15rem auto 10rem;
     justify-content: center;
     align-items: center;
 }
@@ -216,7 +216,10 @@ html, body {
     }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 360px) {
+    #main {
+        grid-template-rows: 7rem auto 5rem;
+    }
     #game-board {
         height: 15rem;
         width: 15rem;
